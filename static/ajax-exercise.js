@@ -29,8 +29,11 @@ function showWeather(evt) {
     evt.preventDefault();
 
     let url = "/weather.json";
+
     let formData = {"zipcode": $("#zipcode-field").val()};
-    $.get(url, (weather_info) => {
+    console.log(formData)
+
+    $.get(url, formData, (weather_info) => {
 	 		const showWeather = weather_info.forecast
 	 		$('#weather-info').html(showWeather);
 	 	})
