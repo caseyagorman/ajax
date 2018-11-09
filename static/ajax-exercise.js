@@ -4,10 +4,16 @@
 
 function showFortune(evt) {
 	$('#get-fortune-button').on('click', (evt) => {
+        // create event listener that takes a click and a callback function 
+        // the callback function is an anonymous arrow function that takes the
+        // event as an argument 
 	 	evt.preventDefault();
+        // prevent page from refreshing
 	 	$.get('/fortune', (fortune) => {
-	 		const showFortune = fortune;
-	 		$('#fortune-text').html(showFortune);
+            // get the route and what ut returns
+	 		$('#fortune-text').html(fortune);
+            // render? the html, adding in the result we got from the route/function
+            // in the div (or whatever) 'fortune-text'
 	 	});
 	 })
 }
@@ -29,18 +35,21 @@ function showWeather(evt) {
     evt.preventDefault();
 
     let url = "/weather.json";
+    // get the route/function 
 
     let formData = {"zipcode": $("#zipcode-field").val()};
-    console.log(formData)
 
-    $.get(url, formData, (weather_info) => {
-	 		const showWeather = weather_info.forecast
+    $.get(url, formData, (weather) => {
+	 		const showWeather = weather.forecast
 	 		$('#weather-info').html(showWeather);
 	 	})
    }
 
 
-// Making a change 
+// 'weather' is just what is returned by the function in the route?
+
+
+
     // TODO: request weather with that URL and show the forecast in #weather-info
 
 
@@ -53,6 +62,16 @@ $("#weather-form").on('submit', showWeather);
 
 function orderMelons(evt) {
     evt.preventDefault();
+    let url='/order-melons.json'
+    const formInputs = {
+    'qty': $('#qty-field').val(),
+    'melon_type': $('#melon-type-field').val()
+  };
+  console.log(formInputs)
+
+    // $.post(url, formInputs) =>{
+        
+    // }
 
     // TODO: show the result message after your form
     // TODO: if the result code is ERROR, make it show up in red (see our CSS!)

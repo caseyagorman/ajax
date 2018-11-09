@@ -47,18 +47,19 @@ def weather():
     """Return a weather-info dictionary for this zipcode."""
 
     zipcode = request.args.get('zipcode')
-    print(zipcode)
     weather_info = WEATHER.get(zipcode, DEFAULT_WEATHER)
-    print(weather_info)
     return jsonify(weather_info)
 
 
 @app.route('/order-melons.json', methods=['POST'])
 def order_melons():
+    print('call order_melons')
     """Order melons and return a dictionary of result-code and result-msg."""
 
     melon = request.form.get('melon_type')
+    print ('melon', melon)
     qty = int(request.form.get('qty'))
+    print ('qty', qty)
 
     if qty > 10:
         result_code = 'ERROR'
@@ -69,6 +70,8 @@ def order_melons():
     else:
         result_code = 'ERROR'
         result_text = "You want to buy fewer than 1 melons? Huh?"
+    print(result_code, result_text)
+    print(jsonify({'code': result_code, 'msg': result_text}))
 
     return jsonify({'code': result_code, 'msg': result_text})
 
