@@ -40,6 +40,7 @@ function showWeather(evt) {
    }
 
 
+// Making a change 
     // TODO: request weather with that URL and show the forecast in #weather-info
 
 
