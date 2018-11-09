@@ -67,11 +67,12 @@ function orderMelons(evt) {
     'qty': $('#qty-field').val(),
     'melon_type': $('#melon-type-field').val()
   };
-  console.log(formInputs)
 
-    // $.post(url, formInputs) =>{
-        
-    // }
+    $.post(url, formInputs, (result) =>{
+        const message = result.msg
+
+        $('#order-status').html(message)
+    });
 
     // TODO: show the result message after your form
     // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
