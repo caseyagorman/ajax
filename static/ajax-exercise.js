@@ -30,10 +30,15 @@ function showWeather(evt) {
 
     let url = "/weather.json";
     let formData = {"zipcode": $("#zipcode-field").val()};
+    $.get(url, (weather_info) => {
+	 		const showWeather = weather_info.forecast
+	 		$('#weather-info').html(showWeather);
+	 	})
+   }
 
 
     // TODO: request weather with that URL and show the forecast in #weather-info
-}
+
 
 $("#weather-form").on('submit', showWeather);
 
